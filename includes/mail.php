@@ -10,8 +10,8 @@ function dnm_send_emails( array $data ): void {
     $from_name = $settings['from_name'] ?? get_bloginfo( 'name' );
     $from_email = $settings['from_email'] ?? get_option( 'admin_email' );
 
-    $subject_client = $settings['subject_client'] ?? dnm_tr( array( 'pt' => 'Confirmação de Reunião - DFNY 2026', 'es' => 'Confirmación de Reunión - DFNY 2026', 'en' => 'Meeting Confirmation - DFNY 2026', 'fr' => 'Confirmation de Réunion - DFNY 2026' ) );
-    $subject_admin = $settings['subject_admin'] ?? dnm_tr( array( 'pt' => 'Nova reunião agendada - DFNY 2026', 'es' => 'Nueva reunión agendada - DFNY 2026', 'en' => 'New meeting booked - DFNY 2026', 'fr' => 'Nouveau rendez-vous planifié - DFNY 2026' ) );
+    $subject_client = $settings['subject_client'] ?? dnm_tr( array( 'pt' => 'Confirmação de Reunião - EWEB', 'es' => 'Confirmación de Reunión - EWEB', 'en' => 'Meeting Confirmation - EWEB', 'fr' => 'Confirmation de Réunion - EWEB' ) );
+    $subject_admin = $settings['subject_admin'] ?? dnm_tr( array( 'pt' => 'Nova reunião agendada - EWEB', 'es' => 'Nueva reunión agendada - EWEB', 'en' => 'New meeting booked - EWEB', 'fr' => 'Nouveau rendez-vous planifié - EWEB' ) );
 
     $summary_text = "Name: {$data['full_name']}\nEmail: {$data['email']}\nPhone: {$data['phone']}\nBusiness: {$data['business_name']}\nCity/Country: {$data['location_country']}\nSegment: {$data['market_segments']}\nGender: {$data['target_genders']}\nTime: {$data['slot_label']} (Europe/Lisbon)\n";
     $summary_html = dnm_build_summary_html( $data );
@@ -112,9 +112,9 @@ function dnm_generate_ics( array $data ): string {
     $end = $start->modify( '+30 minutes' );
     $start_utc = $start->setTimezone( new DateTimeZone( 'UTC' ) );
     $end_utc = $end->setTimezone( new DateTimeZone( 'UTC' ) );
-    $organizer_email = is_email( get_option( 'admin_email' ) ) ? get_option( 'admin_email' ) : 'no-reply@davion.pt';
+    $organizer_email = is_email( get_option( 'admin_email' ) ) ? get_option( 'admin_email' ) : 'no-reply@example.com';
     $attendee_email = is_email( $data['email'] ?? '' ) ? $data['email'] : '';
-    $uid = uniqid( 'dnm_', true ) . '@davion.pt';
+    $uid = uniqid( 'dnm_', true ) . '@example.com';
     $description = dnm_ics_escape(
         'Business: ' . ( $data['business_name'] ?? '' ) .
         ' | Contact: ' . ( $data['full_name'] ?? '' ) .
@@ -123,7 +123,7 @@ function dnm_generate_ics( array $data ): string {
     );
 
     $ics = "BEGIN:VCALENDAR\r\n" .
-        "PRODID:-//EWEB//Davion NY Meetings//EN\r\n" .
+        "PRODID:-//EWEB//Smart Meetings Scheduler//EN\r\n" .
         "VERSION:2.0\r\n" .
         "CALSCALE:GREGORIAN\r\n" .
         "METHOD:REQUEST\r\n" .
@@ -132,13 +132,13 @@ function dnm_generate_ics( array $data ): string {
         'DTSTAMP:' . gmdate( 'Ymd\\THis\\Z' ) . "\r\n" .
         'DTSTART:' . $start_utc->format( 'Ymd\\THis\\Z' ) . "\r\n" .
         'DTEND:' . $end_utc->format( 'Ymd\\THis\\Z' ) . "\r\n" .
-        "SUMMARY:Meeting - Davion @ DFNY 2026\r\n" .
+        "SUMMARY:EWEB Meeting\r\n" .
         "LOCATION:New York\r\n" .
         "DESCRIPTION:{$description}\r\n" .
         "STATUS:CONFIRMED\r\n" .
         "SEQUENCE:0\r\n" .
         "TRANSP:OPAQUE\r\n" .
-        'ORGANIZER;CN=Davion:mailto:' . dnm_ics_escape( $organizer_email ) . "\r\n" .
+        'ORGANIZER;CN=EWEB:mailto:' . dnm_ics_escape( $organizer_email ) . "\r\n" .
         ( $attendee_email ? 'ATTENDEE;CN=' . dnm_ics_escape( $data['full_name'] ?? 'Guest' ) . ';RSVP=TRUE:mailto:' . dnm_ics_escape( $attendee_email ) . "\r\n" : '' ) .
         "BEGIN:VALARM\r\n" .
         "TRIGGER:-PT30M\r\n" .
@@ -153,7 +153,7 @@ function dnm_generate_ics( array $data ): string {
         return '';
     }
 
-    $tmp = trailingslashit( $tmp_dir ) . 'davion-meeting-' . wp_generate_password( 10, false, false ) . '.ics';
+    $tmp = trailingslashit( $tmp_dir ) . 'eweb-meeting-' . wp_generate_password( 10, false, false ) . '.ics';
     $written = file_put_contents( $tmp, $ics );
     if ( false === $written ) {
         return '';

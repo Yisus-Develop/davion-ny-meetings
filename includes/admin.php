@@ -7,7 +7,7 @@ add_action( 'admin_menu', 'dnm_admin_menu' );
 add_action( 'admin_init', 'dnm_register_settings' );
 
 function dnm_admin_menu(): void {
-    add_options_page( 'Davion NY Meetings', 'Davion Meetings', 'manage_options', 'dnm-settings', 'dnm_render_settings_page' );
+    add_options_page( 'EWEB Smart Meetings', 'EWEB Meetings', 'manage_options', 'dnm-settings', 'dnm_render_settings_page' );
 }
 
 function dnm_register_settings(): void {
@@ -46,8 +46,8 @@ function dnm_get_settings(): array {
         'admin_recipients' => get_option( 'admin_email' ),
         'from_name' => get_bloginfo( 'name' ),
         'from_email' => get_option( 'admin_email' ),
-        'subject_client' => 'Meeting Confirmation - DFNY 2026',
-        'subject_admin' => 'New meeting booked - DFNY 2026',
+        'subject_client' => 'Meeting Confirmation - EWEB',
+        'subject_admin' => 'New meeting booked - EWEB',
         'body_client' => "Your meeting has been confirmed.\n\n{summary}",
         'body_admin' => "New meeting booked:\n\n{summary}",
         'success_message' => 'Booking confirmed. We have sent confirmation by email.',
@@ -88,7 +88,7 @@ function dnm_render_settings_page(): void {
     $leads = $wpdb->get_results( "SELECT id, full_name, email, phone, business_name, location_country, market_segments, target_genders, slot_datetime, created_at FROM {$table} ORDER BY created_at DESC LIMIT 200", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
     ?>
     <div class="wrap">
-        <h1>Davion NY Meetings</h1>
+        <h1>EWEB Smart Meetings Scheduler</h1>
         <p>Tokens disponibles para plantillas: <code>{full_name}</code>, <code>{email}</code>, <code>{phone}</code>, <code>{business_name}</code>, <code>{location_country}</code>, <code>{market_segments}</code>, <code>{target_genders}</code>, <code>{slot_label}</code>, <code>{summary}</code>, <code>{summary_table}</code>.</p>
 
         <form method="post" action="options.php">
