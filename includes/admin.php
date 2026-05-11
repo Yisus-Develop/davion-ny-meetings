@@ -29,6 +29,14 @@ function dnm_sanitize_settings( $input ): array {
     $emails = array_filter( array_map( 'trim', explode( ',', $admin_recipients ) ) );
     $emails = array_values( array_filter( $emails, 'is_email' ) );
 
+    $ui_texts = array();
+    if ( isset( $input['ui_texts'] ) && is_array( $input['ui_texts'] ) ) {
+        foreach ( $input['ui_texts'] as $key => $value ) {
+            $k = sanitize_key( (string) $key );
+            $ui_texts[ $k ] = sanitize_text_field( (string) $value );
+        }
+    }
+
     return array(
         'admin_recipients' => implode( ', ', $emails ),
         'from_name' => sanitize_text_field( $input['from_name'] ?? '' ),
@@ -38,6 +46,7 @@ function dnm_sanitize_settings( $input ): array {
         'body_client' => wp_kses_post( $input['body_client'] ?? '' ),
         'body_admin' => wp_kses_post( $input['body_admin'] ?? '' ),
         'success_message' => sanitize_text_field( $input['success_message'] ?? '' ),
+        'ui_texts' => $ui_texts,
     );
 }
 
@@ -51,6 +60,7 @@ function dnm_get_settings(): array {
         'body_client' => "Your meeting has been confirmed.\n\n{summary}",
         'body_admin' => "New meeting booked:\n\n{summary}",
         'success_message' => 'Booking confirmed. We have sent confirmation by email.',
+        'ui_texts' => dnm_default_ui_texts(),
     );
 
     $saved = get_option( 'dnm_settings', array() );
@@ -68,6 +78,10 @@ function dnm_render_settings_page(): void {
 
     global $wpdb;
     $s = dnm_get_settings();
+    $ui_texts = dnm_default_ui_texts();
+    if ( isset( $s['ui_texts'] ) && is_array( $s['ui_texts'] ) ) {
+        $ui_texts = wp_parse_args( $s['ui_texts'], $ui_texts );
+    }
     $table = $wpdb->prefix . DNM_TABLE;
 
     if ( isset( $_POST['dnm_delete_leads'] ) && isset( $_POST['dnm_delete_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['dnm_delete_nonce'] ) ), 'dnm_delete_leads' ) ) {
@@ -102,6 +116,15 @@ function dnm_render_settings_page(): void {
                 <tr><th scope="row"><label for="dnm_body_client">Mensaje cliente</label></th><td><textarea name="dnm_settings[body_client]" id="dnm_body_client" rows="6" class="large-text"><?php echo esc_textarea( $s['body_client'] ); ?></textarea></td></tr>
                 <tr><th scope="row"><label for="dnm_body_admin">Mensaje admin</label></th><td><textarea name="dnm_settings[body_admin]" id="dnm_body_admin" rows="6" class="large-text"><?php echo esc_textarea( $s['body_admin'] ); ?></textarea></td></tr>
                 <tr><th scope="row"><label for="dnm_success_message">Mensaje éxito formulario</label></th><td><input name="dnm_settings[success_message]" id="dnm_success_message" type="text" class="regular-text" value="<?php echo esc_attr( $s['success_message'] ); ?>" /></td></tr>
+            </table>
+            <h2>Frontend Texts (Editable)</h2>
+            <table class="form-table" role="presentation">
+                <?php foreach ( $ui_texts as $key => $value ) : ?>
+                    <tr>
+                        <th scope="row"><label for="dnm_ui_<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $key ); ?></label></th>
+                        <td><input name="dnm_settings[ui_texts][<?php echo esc_attr( $key ); ?>]" id="dnm_ui_<?php echo esc_attr( $key ); ?>" type="text" class="regular-text" value="<?php echo esc_attr( $value ); ?>" /></td>
+                    </tr>
+                <?php endforeach; ?>
             </table>
             <?php submit_button(); ?>
         </form>

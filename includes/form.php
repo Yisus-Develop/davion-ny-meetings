@@ -51,17 +51,17 @@ function dnm_render_shortcode(): string {
                 <input id="dnm_website" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
             <div class="dnm-grid">
-                <div><label for="dnm_full_name"><?php echo esc_html( dnm_tr( array( 'pt' => 'Nome e Apelido', 'es' => 'Nombre y Apellido', 'en' => 'First and Last Name', 'fr' => 'Nom et Prénom' ) ) ); ?></label><input id="dnm_full_name" name="full_name" required type="text"></div>
-                <div><label for="dnm_email"><?php echo esc_html( dnm_tr( array( 'pt' => 'Mail', 'es' => 'Correo', 'en' => 'Email', 'fr' => 'E-mail' ) ) ); ?></label><input id="dnm_email" name="email" required type="email"></div>
-                <div><label for="dnm_phone"><?php echo esc_html( dnm_tr( array( 'pt' => 'Contacto Telefónico', 'es' => 'Teléfono de Contacto', 'en' => 'Phone Number', 'fr' => 'Téléphone' ) ) ); ?></label><input id="dnm_phone" name="phone" required type="text"></div>
-                <div><label for="dnm_business_name"><?php echo esc_html( dnm_tr( array( 'pt' => 'Nome do Negócio', 'es' => 'Nombre del Negocio', 'en' => 'Business Name', 'fr' => 'Nom de l’Entreprise' ) ) ); ?></label><input id="dnm_business_name" name="business_name" required type="text"></div>
-                <div class="dnm-grid-1"><label for="dnm_location_country"><?php echo esc_html( dnm_tr( array( 'pt' => 'Localidade e País', 'es' => 'Ciudad y País', 'en' => 'City and Country', 'fr' => 'Ville et Pays' ) ) ); ?></label><input id="dnm_location_country" name="location_country" required type="text"></div>
-                <div><label><?php echo esc_html( dnm_tr( array( 'pt' => 'Em que segmento de mercado trabalha', 'es' => 'Segmento de mercado', 'en' => 'Market segment', 'fr' => 'Segment de marché' ) ) ); ?></label><div class="dnm-chipset"><input id="dnm_seg_mtm" type="checkbox" name="market_segments[]" value="Made to Measure"><label for="dnm_seg_mtm">Made to Measure</label><input id="dnm_seg_rtw" type="checkbox" name="market_segments[]" value="Ready to Wear"><label for="dnm_seg_rtw">Ready to Wear</label></div></div>
-                <div><label><?php echo esc_html( dnm_tr( array( 'pt' => 'Para que género produzem', 'es' => 'Género', 'en' => 'Gender', 'fr' => 'Genre' ) ) ); ?></label><div class="dnm-chipset"><input id="dnm_gen_h" type="checkbox" name="target_genders[]" value="Men"><label for="dnm_gen_h"><?php echo esc_html( dnm_tr( array( 'pt' => 'Homem', 'es' => 'Hombre', 'en' => 'Men', 'fr' => 'Homme' ) ) ); ?></label><input id="dnm_gen_m" type="checkbox" name="target_genders[]" value="Women"><label for="dnm_gen_m"><?php echo esc_html( dnm_tr( array( 'pt' => 'Mulher', 'es' => 'Mujer', 'en' => 'Women', 'fr' => 'Femme' ) ) ); ?></label></div></div>
+                <div><label for="dnm_full_name"><?php echo esc_html( dnm_text( 'label_full_name', dnm_tr( array( 'pt' => 'Nome e Apelido', 'es' => 'Nombre y Apellido', 'en' => 'First and Last Name', 'fr' => 'Nom et Prénom' ) ) ) ); ?></label><input id="dnm_full_name" name="full_name" required type="text"></div>
+                <div><label for="dnm_email"><?php echo esc_html( dnm_text( 'label_email', dnm_tr( array( 'pt' => 'Mail', 'es' => 'Correo', 'en' => 'Email', 'fr' => 'E-mail' ) ) ) ); ?></label><input id="dnm_email" name="email" required type="email"></div>
+                <div><label for="dnm_phone"><?php echo esc_html( dnm_text( 'label_phone', dnm_tr( array( 'pt' => 'Contacto Telefónico', 'es' => 'Teléfono de Contacto', 'en' => 'Phone Number', 'fr' => 'Téléphone' ) ) ) ); ?></label><input id="dnm_phone" name="phone" required type="text"></div>
+                <div><label for="dnm_business_name"><?php echo esc_html( dnm_text( 'label_business', dnm_tr( array( 'pt' => 'Nome do Negócio', 'es' => 'Nombre del Negocio', 'en' => 'Business Name', 'fr' => 'Nom de l’Entreprise' ) ) ) ); ?></label><input id="dnm_business_name" name="business_name" required type="text"></div>
+                <div class="dnm-grid-1"><label for="dnm_location_country"><?php echo esc_html( dnm_text( 'label_location', dnm_tr( array( 'pt' => 'Localidade e País', 'es' => 'Ciudad y País', 'en' => 'City and Country', 'fr' => 'Ville et Pays' ) ) ) ); ?></label><input id="dnm_location_country" name="location_country" required type="text"></div>
+                <div><label><?php echo esc_html( dnm_text( 'label_segment', dnm_tr( array( 'pt' => 'Em que segmento de mercado trabalha', 'es' => 'Segmento de mercado', 'en' => 'Market segment', 'fr' => 'Segment de marché' ) ) ) ); ?></label><div class="dnm-chipset"><input id="dnm_seg_mtm" type="checkbox" name="market_segments[]" value="Made to Measure"><label for="dnm_seg_mtm"><?php echo esc_html( dnm_text( 'label_mtm', 'Made to Measure' ) ); ?></label><input id="dnm_seg_rtw" type="checkbox" name="market_segments[]" value="Ready to Wear"><label for="dnm_seg_rtw"><?php echo esc_html( dnm_text( 'label_rtw', 'Ready to Wear' ) ); ?></label></div></div>
+                <div><label><?php echo esc_html( dnm_text( 'label_gender', dnm_tr( array( 'pt' => 'Para que género produzem', 'es' => 'Género', 'en' => 'Gender', 'fr' => 'Genre' ) ) ) ); ?></label><div class="dnm-chipset"><input id="dnm_gen_h" type="checkbox" name="target_genders[]" value="Men"><label for="dnm_gen_h"><?php echo esc_html( dnm_text( 'label_men', dnm_tr( array( 'pt' => 'Homem', 'es' => 'Hombre', 'en' => 'Men', 'fr' => 'Homme' ) ) ) ); ?></label><input id="dnm_gen_m" type="checkbox" name="target_genders[]" value="Women"><label for="dnm_gen_m"><?php echo esc_html( dnm_text( 'label_women', dnm_tr( array( 'pt' => 'Mulher', 'es' => 'Mujer', 'en' => 'Women', 'fr' => 'Femme' ) ) ) ); ?></label></div></div>
                 <div class="dnm-grid-1">
-                    <label><?php echo esc_html( dnm_tr( array( 'pt' => 'Data e horário (30 min)', 'es' => 'Fecha y horario (30 min)', 'en' => 'Date and time (30 min)', 'fr' => 'Date et horaire (30 min)' ) ) ); ?></label>
+                    <label><?php echo esc_html( dnm_text( 'label_slot', dnm_tr( array( 'pt' => 'Data e horário (30 min)', 'es' => 'Fecha y horario (30 min)', 'en' => 'Date and time (30 min)', 'fr' => 'Date et horaire (30 min)' ) ) ) ); ?></label>
                     <?php if ( empty( $grouped ) ) : ?>
-                        <p class="dnm-empty-slots"><?php echo esc_html( dnm_tr( array( 'pt' => 'Todas as datas e horários já estão completos.', 'es' => 'Todas las fechas y horarios ya están completos.', 'en' => 'All dates and times are fully booked.', 'fr' => 'Toutes les dates et horaires sont complets.' ) ) ); ?></p>
+                        <p class="dnm-empty-slots"><?php echo esc_html( dnm_text( 'msg_all_booked', dnm_tr( array( 'pt' => 'Todas as datas e horários já estão completos.', 'es' => 'Todas las fechas y horarios ya están completos.', 'en' => 'All dates and times are fully booked.', 'fr' => 'Toutes les dates et horaires sont complets.' ) ) ) ); ?></p>
                     <?php else : ?>
                         <div class="dnm-tabs">
                             <?php $first = true; foreach ( $grouped as $day => $slots ) : ?>
@@ -74,7 +74,7 @@ function dnm_render_shortcode(): string {
                     <?php endif; ?>
                 </div>
             </div>
-            <button class="dnm-submit" type="submit" name="dnm_submit" value="1"><?php echo esc_html( dnm_tr( array( 'pt' => 'Agendar Reunião', 'es' => 'Reservar Reunión', 'en' => 'Book Meeting', 'fr' => 'Réserver une Réunion' ) ) ); ?></button>
+            <button class="dnm-submit" type="submit" name="dnm_submit" value="1"><?php echo esc_html( dnm_text( 'label_book_button', dnm_tr( array( 'pt' => 'Agendar Reunião', 'es' => 'Reservar Reunión', 'en' => 'Book Meeting', 'fr' => 'Réserver une Réunion' ) ) ) ); ?></button>
         </form>
     </div>
     <?php
@@ -83,13 +83,13 @@ function dnm_render_shortcode(): string {
 
 function dnm_handle_submission(): array {
     if ( ! isset( $_POST['dnm_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['dnm_nonce'] ) ), 'dnm_book_meeting' ) ) {
-        return array( 'ok' => false, 'message' => dnm_tr( array( 'pt' => 'Falha de segurança.', 'es' => 'Error de seguridad.', 'en' => 'Security check failed.', 'fr' => 'Échec de sécurité.' ) ) );
+        return array( 'ok' => false, 'message' => dnm_text( 'err_security', dnm_tr( array( 'pt' => 'Falha de segurança.', 'es' => 'Error de seguridad.', 'en' => 'Security check failed.', 'fr' => 'Échec de sécurité.' ) ) ) );
     }
     if ( ! dnm_is_human_submission() ) {
-        return array( 'ok' => false, 'message' => dnm_tr( array( 'pt' => 'Falha de validação.', 'es' => 'Error de validación.', 'en' => 'Validation failed.', 'fr' => 'Échec de validation.' ) ) );
+        return array( 'ok' => false, 'message' => dnm_text( 'err_validation', dnm_tr( array( 'pt' => 'Falha de validação.', 'es' => 'Error de validación.', 'en' => 'Validation failed.', 'fr' => 'Échec de validation.' ) ) ) );
     }
     if ( dnm_is_rate_limited() ) {
-        return array( 'ok' => false, 'message' => dnm_tr( array( 'pt' => 'Muitas tentativas. Tente novamente em alguns minutos.', 'es' => 'Demasiados intentos. Inténtalo en unos minutos.', 'en' => 'Too many attempts. Please try again in a few minutes.', 'fr' => 'Trop de tentatives. Réessayez dans quelques minutes.' ) ) );
+        return array( 'ok' => false, 'message' => dnm_text( 'err_rate_limited', dnm_tr( array( 'pt' => 'Muitas tentativas. Tente novamente em alguns minutos.', 'es' => 'Demasiados intentos. Inténtalo en unos minutos.', 'en' => 'Too many attempts. Please try again in a few minutes.', 'fr' => 'Trop de tentatives. Réessayez dans quelques minutes.' ) ) ) );
     }
 
     $full_name = sanitize_text_field( wp_unslash( $_POST['full_name'] ?? '' ) );
@@ -104,12 +104,12 @@ function dnm_handle_submission(): array {
     $target_genders = array_values( array_intersect( $target_genders, array( 'Men', 'Women' ) ) );
 
     if ( ! $full_name || ! $email || ! $phone || ! $business_name || ! $location_country || ! $slot_datetime || empty( $market_segments ) || empty( $target_genders ) ) {
-        return array( 'ok' => false, 'message' => dnm_tr( array( 'pt' => 'Preencha todos os campos obrigatórios.', 'es' => 'Completa todos los campos obligatorios.', 'en' => 'Please fill all required fields.', 'fr' => 'Veuillez remplir tous les champs obligatoires.' ) ) );
+        return array( 'ok' => false, 'message' => dnm_text( 'err_required_fields', dnm_tr( array( 'pt' => 'Preencha todos os campos obrigatórios.', 'es' => 'Completa todos los campos obligatorios.', 'en' => 'Please fill all required fields.', 'fr' => 'Veuillez remplir tous les champs obligatoires.' ) ) ) );
     }
 
     $allowed = dnm_allowed_slots();
     if ( ! isset( $allowed[ $slot_datetime ] ) ) {
-        return array( 'ok' => false, 'message' => dnm_tr( array( 'pt' => 'Horário inválido.', 'es' => 'Horario inválido.', 'en' => 'Invalid slot.', 'fr' => 'Créneau invalide.' ) ) );
+        return array( 'ok' => false, 'message' => dnm_text( 'err_invalid_slot', dnm_tr( array( 'pt' => 'Horário inválido.', 'es' => 'Horario inválido.', 'en' => 'Invalid slot.', 'fr' => 'Créneau invalide.' ) ) ) );
     }
 
     global $wpdb;
@@ -130,7 +130,7 @@ function dnm_handle_submission(): array {
     );
 
     if ( false === $ok ) {
-        return array( 'ok' => false, 'message' => dnm_tr( array( 'pt' => 'Este horário já foi reservado.', 'es' => 'Ese horario ya fue reservado.', 'en' => 'This slot was already booked.', 'fr' => 'Ce créneau est déjà réservé.' ) ) );
+        return array( 'ok' => false, 'message' => dnm_text( 'err_slot_taken', dnm_tr( array( 'pt' => 'Este horário já foi reservado.', 'es' => 'Ese horario ya fue reservado.', 'en' => 'This slot was already booked.', 'fr' => 'Ce créneau est déjà réservé.' ) ) ) );
     }
 
     dnm_send_emails(
@@ -147,7 +147,7 @@ function dnm_handle_submission(): array {
         )
     );
 
-    return array( 'ok' => true, 'message' => dnm_tr( array( 'pt' => 'Reserva confirmada.', 'es' => 'Reserva confirmada.', 'en' => 'Booking confirmed.', 'fr' => 'Réservation confirmée.' ) ) );
+    return array( 'ok' => true, 'message' => dnm_text( 'msg_booking_confirmed', dnm_tr( array( 'pt' => 'Reserva confirmada.', 'es' => 'Reserva confirmada.', 'en' => 'Booking confirmed.', 'fr' => 'Réservation confirmée.' ) ) ) );
 }
 
 function dnm_is_human_submission(): bool {
