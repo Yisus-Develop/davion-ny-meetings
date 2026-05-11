@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       EWEB - Davion NY Meetings
- * Description:       Meeting booking plugin for Davion's DFNY 2026 event with multilingual scheduling and slot control.
+ * Plugin Name:       EWEB - Smart Meetings Scheduler
+ * Description:       Meeting booking plugin with multilingual scheduling, fixed slots, and server-side booking control.
  * Version:           1.2.1
  * Author:            Yisus_Dev
  * Author URI:        https://github.com/Yisus-Develop
